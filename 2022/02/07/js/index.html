@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="构造函数构造函数就是一个普通函数，创建方式和普通函数没有区别，构造函数和普通函数区别就是调用方式不同，普通函数直接调用，而构造和函数需要使用new关键字来调用。 构造函数执行的流程：1.立刻创建一个新的对象2.将新建的对象作为函数中的this 在构造函数中可以使用this来引用新建的对象3.逐行执行函数中的代码4.将新建对象作为返回值返回 如下例子     function Person(name">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScrit构造函数、原型对象作用意义">
+<meta property="og:url" content="https://syronchoo.github.io/2022/02/07/js/index.html">
+<meta property="og:site_name" content="Syron Choo的个人博客">
+<meta property="og:description" content="构造函数构造函数就是一个普通函数，创建方式和普通函数没有区别，构造函数和普通函数区别就是调用方式不同，普通函数直接调用，而构造和函数需要使用new关键字来调用。 构造函数执行的流程：1.立刻创建一个新的对象2.将新建的对象作为函数中的this 在构造函数中可以使用this来引用新建的对象3.逐行执行函数中的代码4.将新建对象作为返回值返回 如下例子     function Person(name">
+<meta property="og:locale">
+<meta property="article:published_time" content="2022-02-07T12:11:32.000Z">
+<meta property="article:modified_time" content="2022-02-07T13:13:47.140Z">
+<meta property="article:author" content="Syron Choo">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://syronchoo.github.io/2022/02/07/js/"/>
+
+
+
+
+
+  <title>JavaScrit构造函数、原型对象作用意义 | Syron Choo的个人博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Syron Choo的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://syronchoo.github.io/2022/02/07/js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Syron Choo的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScrit构造函数、原型对象作用意义</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-02-07T20:11:32+08:00">
+                2022-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><p>构造函数就是一个普通函数，创建方式和普通函数没有区别，构造函数和普通函数区别就是调用方式不同，普通函数直接调用，而构造和函数需要使用new关键字来调用。</p>
+<p>构造函数执行的流程：<br>1.立刻创建一个新的对象<br>2.将新建的对象作为函数中的this 在构造函数中可以使用this来引用新建的对象<br>3.逐行执行函数中的代码<br>4.将新建对象作为返回值返回</p>
+<p>如下例子</p>
+<pre><code>    function Person(name,age,gender)&#123;
+        this.name = name;  // this指向新创建的对象per
+        this.age = age;
+        this.gender = gender;
+        this.sayName = function()&#123;
+            alert(this.name);
+        &#125;;
+    &#125;;
+    var per = new Person(&#39;孙悟空&#39;,19,&#39;男&#39;);// 使用new关键字调用构造函数
+    var per2 = new Person(&#39;白骨精&#39;,20,&#39;女&#39;);
+    var per3 = new Person(&#39;奔波霸&#39;,22,&#39;女&#39;);
+    console.log(per);
+    console.log(per2);
+    console.log(per3);
+</code></pre>
+<p>instanceof关键字</p>
+<p>使用instanceof可以检查一个对象是否是一个类的实例</p>
+<pre><code>    console.log(对象 instanceof 构造函数)//true
+</code></pre>
+<h2 id="为什么要用原型对象？"><a href="#为什么要用原型对象？" class="headerlink" title="为什么要用原型对象？"></a>为什么要用原型对象？</h2><p>先看下面的代码</p>
+<pre><code>    function Person(name,age,gender)&#123;
+        this.name = name;  // this指向per
+        this.age = age;
+        this.gender = gender;
+        this.sayName = function()&#123;
+            alert(this.name);
+        &#125;;
+    &#125;;
+    var per = new Person(&#39;孙悟空&#39;,19,&#39;男&#39;);// 使用new关键字调用构造函数
+    var per2 = new Person(&#39;孙悟空&#39;,19,&#39;男&#39;);        
+    console.log(per.sayName === per2.sayName); //false
+</code></pre>
+<p>可以发现实例per和实例per2的sayName方法并不相同，这是因为sayName方法是在构造函数内部创建的，构造函数每执行一次都会创建一个新的sayName方法，所有实例的sayName方法都是唯一的。</p>
+<p>执行10000次就会创建 10000个新方法，而这 10000个新方法都是一摸一样的，这是完全没有必须的！！！完全可以使所有对象都共享一个方法！！！而这个对象就是原型对象！！！</p>
+<p>原型对象<br>原型（prototype）<br>我们所创建的每一个构造函数，解析器都会向构造函数中添加一个属性prototype，这个属性对应一个对象，这个对象就是我们所谓的原型对象<br>注意：如果函数作为普通函数调用prototype没有任何作用。</p>
+<p>原型对象就相当于一个公共区域，所有构造函数的实例都可以访问到这个区域内的属性和方法，我们可以将共有的内容统一设置到原型对象中，当我们访问对象的一个属性或方法，它会先在对象自身中寻找，如果有则直接使用，如果没有则会去原型对象中寻找。做为构造函数的实例对象也有一个隐含属性__proto__，实例的这个属性也对应原型对象。</p>
+<p>再看下面代码</p>
+<pre><code>    function Person()&#123;
+    
+    &#125;;                
+    Person.prototype.a = 123;// 向Person的原型中添加属性a
+    Person.prototype.sayHello = function()&#123;// 向Person的原型中添加方法
+        console.log(&#39;hello&#39;);
+    &#125;
+    var p = new Person();
+    var p2 = new Person();
+    console.log(p.sayHello===p2.sayHello);// true
+    console.log(p.__proto__ === Person.prototype);// true
+    console.log(p2.__proto__ === Person.prototype);// true
+</code></pre>
+<h2 id="使用原型对象的好处"><a href="#使用原型对象的好处" class="headerlink" title="使用原型对象的好处"></a>使用原型对象的好处</h2><p>以后我们创建构造函数时，可以将这些原型对象共有的属性和方法 统一添加到构造函数的原型对象中，这样不用分别为每个对象添加，可以节省内存，也不会影响到全局作用域，就可以使每个对象都具有这些属性和方法了。</p>
+<h3 id="in关键字"><a href="#in关键字" class="headerlink" title="in关键字"></a>in关键字</h3><p>使用in关键字检查对象中是否含有某个属性时，如果对象中没有但原型中有也会返回true，否则返回false。</p>
+<pre><code>    function MyClass()&#123;
+
+    &#125;;
+    // 向MyClass的原型中添加一个name属性
+    MyClass.prototype.name = &#39;我是原型中的名字&#39;;
+    var mc = new MyClass();
+    mc.age = 18;
+    console.log(&#39;name&#39; in mc);// true
+    console.log(&#39;name&#39; in MyClass);// true
+    console.log(&#39;age&#39; in mc)// ture
+    console.log(&#39;age&#39; in MyClass)// false
+</code></pre>
+<p>可以发现 name 属性作为原型对象的属性，实例虽然没有定义 name 属性，但仍然可以访问到 name 属性，而属性age不行，因为age不存在MyClass的原型对象里。</p>
+<p>也可以使用对象的 hasOwnProperty() 来检查对象自身中是否含有该属性</p>
+<pre><code>    function MyClass()&#123;
+
+    &#125;
+    // 向MyClass的原型中添加一个name属性
+    MyClass.prototype.name = &#39;我是原型中的名字&#39;;
+    var mc = new MyClass();
+    mc.age = 18;
+    console.log(mc.name);
+    // 可以使用对象的hasOwnProperty()来检查对象自身中是否含有该属性
+    console.log(mc.hasOwnProperty(&#39;name&#39;));// true
+    console.log(mc.hasOwnProperty(&#39;age&#39;));// true
+</code></pre>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/02/02/git/" rel="next" title="GIT命令大全">
+                <i class="fa fa-chevron-left"></i> GIT命令大全
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">为什么要用原型对象？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="nav-number">3.</span> <span class="nav-text">使用原型对象的好处</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#in%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">3.1.</span> <span class="nav-text">in关键字</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Syron Choo</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

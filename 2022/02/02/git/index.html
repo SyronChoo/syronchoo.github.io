@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="$ git init  &#x2F;&#x2F; 初始化一个Git仓库$ git status   &#x2F;&#x2F; 查看仓库的状态$ git add .   &#x2F;&#x2F; 将所有修改添加到暂存区$ git add *  &#x2F;&#x2F; Ant风格添加修改$ git add Controller   &#x2F;&#x2F; 将以Controller结尾的文件的所有修改添加到暂存区$ git add Hello   &#x2F;&#x2F; 将所有以Hello开头的文件的修改添加到暂存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GIT命令大全">
+<meta property="og:url" content="https://syronchoo.github.io/2022/02/02/git/index.html">
+<meta property="og:site_name" content="Syron Choo的个人博客">
+<meta property="og:description" content="$ git init  &#x2F;&#x2F; 初始化一个Git仓库$ git status   &#x2F;&#x2F; 查看仓库的状态$ git add .   &#x2F;&#x2F; 将所有修改添加到暂存区$ git add *  &#x2F;&#x2F; Ant风格添加修改$ git add Controller   &#x2F;&#x2F; 将以Controller结尾的文件的所有修改添加到暂存区$ git add Hello   &#x2F;&#x2F; 将所有以Hello开头的文件的修改添加到暂存">
+<meta property="og:locale">
+<meta property="article:published_time" content="2022-02-02T10:11:32.000Z">
+<meta property="article:modified_time" content="2022-02-07T13:13:47.140Z">
+<meta property="article:author" content="Syron Choo">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://syronchoo.github.io/2022/02/02/git/"/>
+
+
+
+
+
+  <title>GIT命令大全 | Syron Choo的个人博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Syron Choo的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://syronchoo.github.io/2022/02/02/git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Syron Choo的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">GIT命令大全</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-02-02T18:11:32+08:00">
+                2022-02-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>$ git init  // 初始化一个Git仓库<br>$ git status   // 查看仓库的状态<br>$ git add .   // 将所有修改添加到暂存区<br>$ git add *  // Ant风格添加修改<br>$ git add <em>Controller   // 将以Controller结尾的文件的所有修改添加到暂存区<br>$ git add Hello</em>   // 将所有以Hello开头的文件的修改添加到暂存区 例如:HelloWorld.txt,Hello.java,HelloGit.txt …<br>$ git add Hello?   // 将以Hello开头后面只有一位的文件的修改提交到暂存区 例如:Hello1.txt,HelloA.java 如果是HelloGit.txt或者Hello.java是不会被添加的<br>可以多次添加然后在提交<br>$ git commit -m “comment”  // 将暂存区的修改提交到仓库 后面添加上有意义的注视信息<br>$ git diff  file  // 在file被修改了还未提交的时候查看修改的部分(和版本库中最新版本的不同 diff == difference 不同)<br>$ git log  // 查看git的commit信息,每次提交的信息包括注视在内,从最新提交到最久提交<br>$ git log –pretty=oneline   // 将commit 信息简化成一行显示<br>注意Git的版本号(commit id)是SHA1值ea34578d5496d7dd233c827ed32a8cd576c5ee85<br>$ git reset –hard HEAD^   // 退回到相对于当前版本的上一个版本 HEAD 表示当前版本<br>$ git reset –hard HEAD^^  // 退回到相对于当前版本的上上一个版本  HEAD 代表当前版本<br>$ git reset –hard HEAD~100 //退回到相对于当前版本的上 100 个版本去  HEAD 表示当前版本<br>$ git reset –hard 3628164  // 退回到指定的版本   这里不需要全部写commit id  Git 回去自动适配<br>Git的版本回退速度非常快，因为Git在内部有个指向当前版本的HEAD指针，当你回退版本的时候，Git仅仅是把HEAD从指向append GPL<br>$ git reflog   // 在退回到旧版本之后可以查看旧版本之前的提交日志<br>当我们想从一个旧版本退回到新版本但是我们关闭了shell窗口,不能查看之前的commit id了,就可以通过<br>$ git reflog 查看到之前的版本的commit id<br>$ git reset –hard 3628164</p>
+<p>工作区和暂存区<br>工作区: 就是我们通$ git init 创建的代码库的所有文件但是不包括 .git文件(版本库)<br>暂存区: 我们通过$ git add ./*/<em>Xxx/Xxxx</em> 添加的修改,都是进入到暂存区了,肉眼不可见 通过 $ git status  可以看到修改的状态<br>什么是修改？<br>  比如你新增了一行，这就是一个修改，<br>  删除了一行，也是一个修改，<br>  更改了某些字符，也是一个修改，<br>  删了一些又加了一些，也是一个修改，<br>  甚至创建一个新文件，也算一个修改。</p>
+<p>修改只能在被add 到暂存区以后才能被提交<br>在file 已经修改还未add的时候<br>$ git checkout –file  // 表示丢弃工作区的修改退回原始状态(不包括以及添加到暂存区的修改)<br>file已经修改和添加到了暂存区,还未commit<br>$ git reset HEAD file   // 丢弃file已经添加到暂存区的修改  HEAD 表示最新版本</p>
+<p>如果file修改已经提交到本地仓库<br>$ git reset –hard HEAD^   //退回到上一个版本</p>
+<p>$ rm file  // 从文件系统中删除文件(Git 中还是有记录),$ git status 的时候Git 会告诉你有一个file 被删除了<br>$ git rm file  // 从Git版本库中删除文件(同时从文件系统中删除文件) $ git status  正常</p>
+<p>$ git rm file  // 从git版本库中删除文件<br>$ git commit -m “delete file” // 提交删除<br>$ git checkout file  // 想要从git恢复 会出现:error: pathspec ‘README.txt’ did not match any file(s) known to git.<br>$ git reset –hard HEAD^  // 恢复到上一个版本 可以恢复文件</p>
+<p>$ rm file   //在文件系统中删除文件<br>$ git checkout file  // 由于是通过文件系统删除的所以可以通过checkout恢复</p>
+<p>$ ssh-keygen -t rsa -C “<a href="mailto:&#x79;&#111;&#x75;&#x72;&#x65;&#109;&#97;&#105;&#108;&#64;&#101;&#x78;&#x61;&#x6d;&#112;&#108;&#x65;&#46;&#x63;&#x6f;&#109;">&#x79;&#111;&#x75;&#x72;&#x65;&#109;&#97;&#105;&#108;&#64;&#101;&#x78;&#x61;&#x6d;&#112;&#108;&#x65;&#46;&#x63;&#x6f;&#109;</a>“  // 创建SSH Key<br>由于这个Key也不是用于军事目的，所以也无需设置密码,所以一路回车就好,<br>如果顺利会在user下UserName目录中生成一个.ssh目录里面有id_rsa和id_rsa.pub两个文件<br>id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥,可以告诉他人还有在github上添加的也是这个公钥<br>登陆GitHub，打开“Account settings”，“SSH Keys”页面,点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容<br>GitHub允许你添加多个Key。假定你有若干电脑，你一会儿在公司提交，一会儿在家里提交，只要把每台电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub推送了</p>
+<p>添加远程库<br>做全局的配置<br>$ git config –global user.name “zhangsan”<br>$ git config –global user.email “<a href="mailto:&#122;&#x68;&#x61;&#x6e;&#103;&#115;&#97;&#110;&#x40;&#x31;&#x33;&#x39;&#46;&#99;&#x6f;&#109;">&#122;&#x68;&#x61;&#x6e;&#103;&#115;&#97;&#110;&#x40;&#x31;&#x33;&#x39;&#46;&#99;&#x6f;&#109;</a>“<br>$ git remote add origin <a href="mailto:&#x67;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#x2e;&#x63;&#111;&#109;">&#x67;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#x2e;&#x63;&#111;&#109;</a>:zhangsan/ylez.git // 添加一个远程仓库<br>  // add origin 就是添加一个远程仓库<br>  // <a href="mailto:&#103;&#105;&#x74;&#x40;&#103;&#105;&#x74;&#104;&#x75;&#x62;&#x2e;&#x63;&#111;&#109;">&#103;&#105;&#x74;&#x40;&#103;&#105;&#x74;&#104;&#x75;&#x62;&#x2e;&#x63;&#111;&#109;</a>:zhangsan/ylez.git  是远程仓库的地址<br>  // <a href="mailto:&#x67;&#x69;&#116;&#64;&#103;&#105;&#116;&#x68;&#117;&#x62;&#x2e;&#99;&#111;&#109;">&#x67;&#x69;&#116;&#64;&#103;&#105;&#116;&#x68;&#117;&#x62;&#x2e;&#99;&#111;&#109;</a> 主机的地址  我们可以通过GitLab大家自己的git服务器<br>  // zhangsan 是你的用户名<br>  // /ylez.git 是你的仓库名<br>$ git push -u origin master  // 将本地的master分支推送到远程的master分支中<br>$ git push -u origin dev    // 本地切换到dev分支然后将本地的dev分支推送到远程</p>
+<p>克隆远程仓库到本地<br>Git支持多种协议，包括https，但通过ssh支持的原生git协议速度最快。<br>$ git clone <a href="mailto:&#x67;&#x69;&#116;&#64;&#x31;&#57;&#50;&#x2e;&#49;&#54;&#56;&#x2e;&#x30;&#x2e;&#56;">&#x67;&#x69;&#116;&#64;&#x31;&#57;&#50;&#x2e;&#49;&#54;&#56;&#x2e;&#x30;&#x2e;&#56;</a>:zhangsan/test.git  // 讲一个远程的仓库克隆到本地</p>
+<p>每次提交，Git都把它们串成一条时间线，这条时间线就是一个分支<br>在Git里，默认有一个主分支，即master分支<br>HEAD严格来说不是指向提交，而是指向master，master才是指向提交的，所以，HEAD指向的就是当前分支<br>master分支是一条线，Git用master指向最新的提交，再用HEAD指向master<br>每次提交，master分支都会向前移动一步，这样，随着你不断提交，master分支的线也越来越长<br>Git新建了一个指针叫dev，指向master相同的提交，再把HEAD指向dev，就表示当前分支在dev上</p>
+<p>$ git branch   // 查看git的所有分支<br>$ git branch dev  // 创建dev分支<br>$ git checkout dev  // 切换到一个已经存在的分支<br>$ git checkout -b dev  // 创建dev分支,并切换到dev分支<br>$ git branch -d dev  // 删除dev分支</p>
+<p>$ git checkout master  // 切换到主分支<br>$ git merge dev   // 将dev分支合并到master分支<br>Updating d17efd8..fec145a<br>Fast-forward<br> readme.txt |    1 +<br> 1 file changed, 1 insertion(+)<br>Fast-forward信息，Git告诉我们，这次合并是“快进模式”,就是直接把master指向dev的当前提交，所以合并速度非常快<br>$ git branch -d dev  // 删除dev分支</p>
+<p>现在只是剩下master分支,感觉什么事情都没又发生一样</p>
+<p>处理冲突<br>$ git checkout -b feature1<br>Switched to a new branch ‘feature1’</p>
+<p>修改readme.txt最后一行，改为：<br>Creating a new branch is quick AND simple.</p>
+<p>$ git add readme.txt<br>$ git commit -m “AND simple”<br>[feature1 75a857c] AND simple<br> 1 file changed, 1 insertion(+), 1 deletion(-)</p>
+<p>$ git checkout master<br>Switched to branch ‘master’<br>Your branch is ahead of ‘origin/master’ by 1 commit.<br>Git还会自动提示我们当前master分支比远程的master分支要超前1个提交。</p>
+<p>在master分支上把readme.txt文件的最后一行改为：<br>Creating a new branch is quick &amp; simple.</p>
+<p>$ git add readme.txt<br>$ git commit -m “&amp; simple”<br>[master 400b400] &amp; simple<br>1 file changed, 1 insertion(+), 1 deletion(-)</p>
+<p>$ git merge feature1<br>Auto-merging readme.txt<br>CONFLICT (content): Merge conflict in readme.txt<br>Automatic merge failed; fix conflicts and then commit the result.</p>
+<p>$ git status</p>
+<h1 id="On-branch-master"><a href="#On-branch-master" class="headerlink" title="On branch master"></a>On branch master</h1><h1 id="Your-branch-is-ahead-of-‘origin-master’-by-2-commits"><a href="#Your-branch-is-ahead-of-‘origin-master’-by-2-commits" class="headerlink" title="Your branch is ahead of ‘origin/master’ by 2 commits."></a>Your branch is ahead of ‘origin/master’ by 2 commits.</h1><h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="Unmerged-paths"><a href="#Unmerged-paths" class="headerlink" title="Unmerged paths:"></a>Unmerged paths:</h1><h1 id="use-“git-add-rm-…”-as-appropriate-to-mark-resolution"><a href="#use-“git-add-rm-…”-as-appropriate-to-mark-resolution" class="headerlink" title="(use “git add/rm …” as appropriate to mark resolution)"></a>(use “git add/rm <file>…” as appropriate to mark resolution)</h1><h1 id="-1"><a href="#-1" class="headerlink" title=""></a></h1><h1 id="both-modified-readme-txt-冲突了"><a href="#both-modified-readme-txt-冲突了" class="headerlink" title="both modified:      readme.txt  // 冲突了"></a>both modified:      readme.txt  // 冲突了</h1><h1 id="-2"><a href="#-2" class="headerlink" title=""></a></h1><p>no changes added to commit (use “git add” and/or “git commit -a”)</p>
+<p>Git is a distributed version control system.<br>Git is free software distributed under the GPL.<br>Git has a mutable index called stage.<br>Git tracks changes of files.<br>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>Creating a new branch is quick &amp; simple.<br>=======<br>Creating a new branch is quick AND simple.</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>feature1</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>Git用&lt;&lt;&lt;&lt;&lt;&lt;&lt;，=======，&gt;&gt;&gt;&gt;&gt;&gt;&gt;标记出不同分支的内容，我们修改如下后保存：<br>Creating a new branch is quick and simple.</p>
+<p>再提交：<br>$ git add readme.txt<br>$ git commit -m “conflict fixed”<br>[master 59bc1cb] conflict fixed</p>
+<p>用带参数的git log也可以看到分支的合并情况:<br>$ git log –graph –pretty=oneline –abbrev-commit<br>$ git log –graph –pretty=oneline –abbrev-commit</p>
+<ul>
+<li>  59bc1cb conflict fixed<br>|<br>| * 75a857c AND simple</li>
+<li>| 400b400 &amp; simple<br>|/</li>
+<li>fec145a branch test<br>…</li>
+</ul>
+<p>删除feature1分支：<br>$ git branch -d feature1<br>Deleted branch feature1 (was 75a857c).</p>
+<p>通常，合并分支时，如果可能，Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息。<br>如果要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息<br>$ git merge –no-ff -m “comment” dev  // 准备合并dev分支，请注意–no-ff参数，表示禁用Fast forward</p>
+<p>$ git log –graph –pretty=oneline –abbrev-commit  //图形化展示分支情况</p>
+<ul>
+<li>  7825a50 merge with no-ff<br>|<br>| * 6224937 add merge<br>|/</li>
+<li>  59bc1cb conflict fixed<br>…</li>
+</ul>
+<p>修复一个代号101的bug的任务时，很自然地，你想创建一个分支issue-101来修复它<br>在修复bug时候,手里还有工作没有完成但是又不能提交可以将进度冻结<br>在你当前的工作区(分支)<br>$ git stash  // 冻结当前的分支修改</p>
+<p>查看所有的stash<br>$ git stash list  // 列出所有的工作现场存储<br>$ git stash list<br>stash@{0}: WIP on dev: 6224937 add merge<br>$ git stash apply (stash@{n}) // 恢复工作现场(只有一个的时候可以省略后面的,如果有多个可以恢复指定的某一个stash)但是不删除存储中的stash<br>$ git stash drop (stash@{n})  // 删除存储的工作现场(只有一个的时候可以省略后面的,如果又多个就指定删除某一个)<br>$ git stash pop (stash@{n})  // 恢复的同时把stash内容也删了(只有一个的时候可以省略后面的,如果又多个就指定删除某一个)</p>
+<p>$ git branch -d branchName  // 删除某一个分支,前提是在该分支和产生该分支的主分支已经合并了(merge)<br>$ git branch -D branchName  // 删除某一个分支,无论是否合并都强制删除</p>
+<p>当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin。</p>
+<p>要查看远程库的信息，用git remote：<br>$ git remote<br>origin</p>
+<p>或者，用git remote -v显示更详细的信息：<br>$ git remote -v<br>origin  <a href="mailto:&#x67;&#105;&#x74;&#64;&#x67;&#x69;&#x74;&#104;&#117;&#98;&#46;&#99;&#111;&#x6d;">&#x67;&#105;&#x74;&#64;&#x67;&#x69;&#x74;&#104;&#117;&#98;&#46;&#99;&#111;&#x6d;</a>:michaelliao/learngit.git (fetch)<br>origin  <a href="mailto:&#x67;&#105;&#x74;&#64;&#103;&#x69;&#x74;&#104;&#117;&#98;&#46;&#99;&#111;&#109;">&#x67;&#105;&#x74;&#64;&#103;&#x69;&#x74;&#104;&#117;&#98;&#46;&#99;&#111;&#109;</a>:michaelliao/learngit.git (push)</p>
+<p>并不是一定要把本地分支往远程推送，那么，哪些分支需要推送，哪些不需要呢？<br>  master分支是主分支，因此要时刻与远程同步；<br>  dev分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步；<br>  bug分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；<br>  feature分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发。</p>
+<p>推送的时候如果有人在你之前已经推送了,推送失败<br>$ git push origin dev<br>  To <a href="mailto:&#103;&#105;&#x74;&#64;&#103;&#105;&#x74;&#x68;&#x75;&#x62;&#x2e;&#99;&#x6f;&#x6d;">&#103;&#105;&#x74;&#64;&#103;&#105;&#x74;&#x68;&#x75;&#x62;&#x2e;&#99;&#x6f;&#x6d;</a>:michaelliao/learngit.git<br>   ! [rejected]        dev -&gt; dev (non-fast-forward)<br>  error: failed to push some refs to ‘<a href="mailto:&#x67;&#105;&#x74;&#64;&#x67;&#x69;&#x74;&#104;&#x75;&#98;&#x2e;&#99;&#x6f;&#x6d;">&#x67;&#105;&#x74;&#64;&#x67;&#x69;&#x74;&#104;&#x75;&#98;&#x2e;&#99;&#x6f;&#x6d;</a>:michaelliao/learngit.git’<br>  hint: Updates were rejected because the tip of your current branch is behind<br>  hint: its remote counterpart. Merge the remote changes (e.g. ‘git pull’)<br>  hint: before pushing again.<br>  hint: See the ‘Note about fast-forwards’ in ‘git push –help’ for details.<br>因为你的小伙伴的最新提交和你试图推送的提交有冲突，解决办法也很简单，<br>Git已经提示我们，先用git pull把最新的提交从origin/dev抓下来，然后，在本地合并，解决冲突，再推送<br>$ git pull  //抓去远程的分支的提交到本地</p>
+<p>没有指定本地dev分支与远程origin/dev分支的链接,推送也会失败,所以首先我们需要建立本地分支和远程分支的联系<br>$ git branch –set-upstream dev origin/dev  // 建立本地dev 分支和远程dev分支的联系<br>Branch dev set up to track remote branch dev from origin.</p>
+<p>总结:<br>查看远程库信息，使用git remote -v；<br>本地新建的分支如果不推送到远程，对其他人就是不可见的；<br>从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；<br>在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；<br>建立本地分支和远程分支的关联，使用git branch –set-upstream branch-name origin/branch-name；<br>从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。</p>
+<p>发布一个版本时，我们通常先在版本库中打一个标签，这样，就唯一确定了打标签时刻的版本。<br>将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。所以，标签也是版本库的一个快照。<br>Git的标签虽然是版本库的快照，但其实它就是指向某个commit的指针（跟分支很像对不对？但是分支可以移动，标签不能移动），所以，创建和删除标签都是瞬间完成的。</p>
+<p>标签一般打在master分支上<br>$ git tag v1.0  // 在当前版本HEAD上打一个名称为v1.0 的标签<br>$ git tag   // 查看所有标签,会列表出所有的标签名</p>
+<p>为历史commit打tag(有时候忘记打标签了本来该星期一打结果星期五才想起来)<br>$ git log –pretty=oneline –abbrev-commit<br>6a5819e merged bug fix 101<br>cc17032 fix bug 101<br>7825a50 merge with no-ff<br>6224937 add merge<br>59bc1cb conflict fixed<br>400b400 &amp; simple<br>75a857c AND simple<br>fec145a branch test<br>d17efd8 remove test.txt</p>
+<p>$ git tag v0.8 59bc1cb // 为commit id 为59bc1cb…的commit打上v0.8 标签<br>标签不是按时间顺序列出，而是按字母排序的。可以用git show <tagname>查看标签信息</p>
+<p>还可以创建带有说明的标签，用-a指定标签名，-m指定说明文字：<br>$ git tag -a v0.1 -m “version 0.1 released” 3628164  // 为commit id为3628164…的commit打上v0.1 的标签注视内容是version 0.1 released</p>
+<p>$ git tag v0.1 //可以查看标签的信息包括文字说明<br>还可以通过-s用私钥签名一个标签：<br>$ git tag -s v0.2 -m “signed version 0.2 released” fec145a<br>签名采用PGP签名，因此，必须首先安装gpg（GnuPG），如果没有找到gpg，或者没有gpg密钥对，就会报错：<br>gpg: signing failed: secret key not available<br>error: gpg failed to sign the data<br>error: unable to sign the tag<br>如果报错，请参考GnuPG帮助文档配置Key。</p>
+<p>用命令git show <tagname>可以看到PGP签名信息：<br>$ git show v0.2</p>
+<p>$ git tag -d v0.1   // 删除标签 v0.1<br>$ git push -u origin v1.0  // 将标签v1.0 推送到远程仓库<br>$ git push -u origin –tags   // 一次性推送全部标签</p>
+<p>如果标签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除：<br>$ git tag -d v0.9<br>Deleted tag ‘v0.9’ (was 6224937)</p>
+<p>然后，从远程删除。删除命令也是push，但是格式如下：<br>$ git push origin :refs/tags/v0.9<br>To <a href="mailto:&#103;&#105;&#116;&#x40;&#x67;&#x69;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;">&#103;&#105;&#116;&#x40;&#x67;&#x69;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;</a>:michaelliao/learngit.git</p>
+<ul>
+<li>[deleted]         v0.9</li>
+</ul>
+<p>在Git工作区的根目录下创建一个特殊的.gitignore文件，然后把要忽略的文件名填进去，Git就会自动忽略这些文件<br>忽略文件的原则是：</p>
+<p>忽略操作系统自动生成的文件，比如缩略图等；<br>忽略编译生成的中间文件、可执行文件等，也就是如果一个文件是通过另一个文件自动生成的，那自动生成的文件就没必要放进版本库，比如Java编译产生的.class文件；<br>忽略你自己的带有敏感信息的配置文件，比如存放口令的配置文件。<br>一个完整的.gitignore文件</p>
+<h1 id="Windows"><a href="#Windows" class="headerlink" title="Windows:"></a>Windows:</h1><p>Thumbs.db<br>ehthumbs.db<br>Desktop.ini</p>
+<p>#project<br>*.class<br>*.war<br>classes<br>target</p>
+<p>首先从git上checkout最新的代码默认是checkout主分支master分支的代码,所以我们需要再次checkout开发分支的代码<br>master分支是最新稳定版,而dev分支是最新的开发版<br>一定要记得从服务器上checout而不是在本地创建新分支,如果做新的功能是在前面2步后,在本地的dev分支上checkout新的子分支<br>然后开发,提交合并到dev,push到代码服务器中.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/02/07/js/" rel="prev" title="JavaScrit构造函数、原型对象作用意义">
+                JavaScrit构造函数、原型对象作用意义 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#On-branch-master"><span class="nav-number">1.</span> <span class="nav-text">On branch master</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Your-branch-is-ahead-of-%E2%80%98origin-master%E2%80%99-by-2-commits"><span class="nav-number">2.</span> <span class="nav-text">Your branch is ahead of ‘origin&#x2F;master’ by 2 commits.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unmerged-paths"><span class="nav-number">4.</span> <span class="nav-text">Unmerged paths:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#use-%E2%80%9Cgit-add-rm-%E2%80%A6%E2%80%9D-as-appropriate-to-mark-resolution"><span class="nav-number">5.</span> <span class="nav-text">(use “git add&#x2F;rm …” as appropriate to mark resolution)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-1"><span class="nav-number">6.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#both-modified-readme-txt-%E5%86%B2%E7%AA%81%E4%BA%86"><span class="nav-number">7.</span> <span class="nav-text">both modified:      readme.txt  &#x2F;&#x2F; 冲突了</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-2"><span class="nav-number">8.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Windows"><span class="nav-number">9.</span> <span class="nav-text">Windows:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Syron Choo</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
